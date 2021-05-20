@@ -1,0 +1,11 @@
+/* You can use CSS vars with Gatsby*/
+:root {
+  --mainYellow: #d2aa5c;
+  --mainOrange: #f15025;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
