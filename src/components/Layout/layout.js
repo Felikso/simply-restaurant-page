@@ -7,7 +7,36 @@ import { theme } from "../style/theme.js";
 
 import Footer from '../Footer/Footer'
 
-class Template extends React.Component {
+
+const Layout = ({ children }) => {
+  if (typeof window !== `undefined`){
+    window.onbeforeunload = function () {
+        window.scrollTo(0, 0);
+      }
+}
+  return (
+    <React.Fragment>
+      <ThemeProvider theme={theme}> 
+      <GlobalStyle />
+      <div className={`body`}>
+        <div id="wrapper">
+
+          {children}
+          <Footer />
+        </div>
+      </div>
+      </ThemeProvider>
+    </React.Fragment>
+  )
+}
+
+/* Layout.propTypes = {
+  children: PropTypes.node.isRequired,
+} */
+
+export default Layout
+
+/* class Template extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -54,3 +83,4 @@ class Template extends React.Component {
 }
 
 export default Template
+ */

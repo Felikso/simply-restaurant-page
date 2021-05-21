@@ -2,14 +2,17 @@ import React from "react"
 
 import styled from "styled-components"
 
-import Img from "gatsby-image"
+import {  GatsbyImage } from 'gatsby-plugin-image'
 
 import { SectionButton } from "../../utils"
 
-const LocationCard = ({ locationInfo, fluid }) => {
+const LocationCard = ({ locationInfo, img }) => {
+  console.log(img)
   return (
     <LocationCardWrapper>
-      {/* <Img fluid={fluid} /> */}
+      <GatsbyImage 
+      image={img}
+      />
       <div className="text">
         <h3 className="address">{locationInfo.address}</h3>
         <h4 className="phone">{locationInfo.phone}</h4>
