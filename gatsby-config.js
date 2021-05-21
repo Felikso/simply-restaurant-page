@@ -49,8 +49,8 @@ module.exports = {
 			options: {
 				url: "https://blog.ventus-trade.pl/graphql",
 /*         baseUrl: `blog.ventus-trade.pl/graphql`, */
-        protocol: `https`,
-        useACF: true,
+/*         protocol: `https`,
+        useACF: true, */
         type: {
           BlockEditorContentNode: { exclude: true }
     }

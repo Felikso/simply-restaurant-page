@@ -9,7 +9,7 @@ import { styles, PageHeader, Banner, Title, Section } from "../utils"
 import aboutImage from "../images/bcg/aboutBcg.jpeg"
 
 import AboutText from "../components/AboutComponents/AboutText"
-import AboutGallery from "../components/AboutComponents/AboutGallery"
+/* import AboutGallery from "../components/AboutComponents/AboutGallery" */
 import AwardSection from "../components/AboutComponents/AwardSection"
 
 const AboutPage = () => (
@@ -22,7 +22,7 @@ const AboutPage = () => (
     <Title title="a neighborhood favorite" subtitle="get to know us" />
     <AwardSection />
     <AboutText />
-    <AboutGallery />
+{/*     <AboutGallery /> */}
   </Layout>
 )
 

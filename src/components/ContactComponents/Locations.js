@@ -54,10 +54,11 @@ const Locations = () => {
 
           return locations.map(({ node }, index) => {
             return (
-              <LocationCard
+              <p>XD</p>
+/*               <LocationCard
                 fluid={node.childImageSharp.fluid}
                 locationInfo={locationInfo[index]}
-              />
+              /> */
             )
           })
         }}

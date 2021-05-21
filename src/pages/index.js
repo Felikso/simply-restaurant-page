@@ -1,22 +1,54 @@
+import { Link } from 'gatsby'
 import React from "react"
 
 import styled from "styled-components"
 
-import Layout from "../components/layout"
+import Layout from '../components/Layout/layout'
 import SEO from "../components/seo"
 import { HomeHeader, HomeBanner, BannerButton } from "../utils"
 
 import image from "../images/bcg/homeBcg.jpeg"
 
-import { Link } from "gatsby"
 
 import QuickInfo from "../components/HomepageComponents/QuickInfo"
 import Gallery from "../components/HomepageComponents/Gallery"
 import Menu from "../components/HomepageComponents/Menu"
 
-const IndexPage = () => (
-  <Layout>
-    <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
+
+import Helmet from 'react-helmet'
+import { Waypoint } from 'react-waypoint'
+
+
+import Nav from '../components/ScrollNav/Nav'
+import Navbar from '../components/globals/navbar/Navbar'
+
+//sections
+import AboutUsSection from '../sections/AboutUsSection'
+import ContactUsSection from '../sections/ContactUsSection'
+import OurOfferSection from '../sections/OurOfferSection'
+
+class Index extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      stickyNav: false,
+    }
+  }
+
+  _handleWaypointEnter = () => {
+    this.setState(() => ({ stickyNav: false }))
+  }
+
+  _handleWaypointLeave = () => {
+    this.setState(() => ({ stickyNav: true }))
+  }
+
+  render() {
+    return (
+      <Layout>
+        <Helmet title="Gatsby Starter - Stellar" />
+
+        <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
     <HomeHeader image={image}>
       <HomeBanner
         title="eatery"
@@ -37,11 +69,25 @@ const IndexPage = () => (
         </BannerButtonWrapper>
       </HomeBanner>
     </HomeHeader>
-    <QuickInfo />
-{/*     <Gallery /> */}
-    <Menu />
-  </Layout>
-)
+
+        <Waypoint
+          onEnter={this._handleWaypointEnter}
+          onLeave={this._handleWaypointLeave}
+        ></Waypoint>
+        <Nav sticky={this.state.stickyNav} />
+
+        <QuickInfo />
+        <AboutUsSection id="about-us-section" />
+        <ContactUsSection id="contact-us-section" />
+        <OurOfferSection id="our-offer-section" />
+        <Menu />
+      </Layout>
+    )
+  }
+}
+
+export default Index
+
 
 const BannerButtonWrapper = styled.div`
   display: flex;
@@ -52,4 +98,7 @@ const ButtonWrapper = styled.button`
   background: blue;
   color: white;
 `
-export default IndexPage
+
+
+
+

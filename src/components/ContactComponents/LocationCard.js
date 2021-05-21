@@ -9,7 +9,7 @@ import { SectionButton } from "../../utils"
 const LocationCard = ({ locationInfo, fluid }) => {
   return (
     <LocationCardWrapper>
-      <Img fluid={fluid} />
+      {/* <Img fluid={fluid} /> */}
       <div className="text">
         <h3 className="address">{locationInfo.address}</h3>
         <h4 className="phone">{locationInfo.phone}</h4>
