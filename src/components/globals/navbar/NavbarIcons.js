@@ -1,7 +1,10 @@
 import React, { Component } from "react"
 import styled from "styled-components"
 import { styles } from "../../../utils"
-import { FaInstagram, FaTwitter, FaFacebook } from "react-icons/fa"
+
+import { FaInstagram } from "@react-icons/all-files/fa/FaInstagram";
+import { FaTwitter } from "@react-icons/all-files/fa/FaTwitter";
+import { FaFacebook } from "@react-icons/all-files/fa/FaFacebook";
 
 export default class NavbarIcons extends Component {
   state = {

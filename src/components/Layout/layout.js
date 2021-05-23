@@ -1,10 +1,13 @@
 import React from 'react'
+import { useStaticQuery, graphql } from 'gatsby'
 /* import '../assets/scss/main.scss' */
 
 import { ThemeProvider } from "styled-components";
 import { GlobalStyle } from "../style/GlobalStyle";
 import { theme } from "../style/theme.js";
 
+import ScrollBtn from '../../interactions/ScrollBtn'
+import MainNav from '../MainNav/MainNav'
 import Footer from '../Footer/Footer'
 
 
@@ -14,15 +17,37 @@ const Layout = ({ children }) => {
         window.scrollTo(0, 0);
       }
 }
+
+    const data = useStaticQuery(graphql`
+    query SiteTitleQuery {
+      site {
+        siteMetadata {
+          title
+          description
+          author
+          street
+          city
+          motto
+        }
+      }
+    }
+    `)
+
+/*     console.log(data) */
+    const siteData = data.site.siteMetadata
+
+
   return (
     <React.Fragment>
       <ThemeProvider theme={theme}> 
       <GlobalStyle />
+      <MainNav />
+      <ScrollBtn showBelow={250} />
       <div className={`body`}>
         <div id="wrapper">
 
           {children}
-          <Footer />
+          <Footer siteData={siteData} />
         </div>
       </div>
       </ThemeProvider>

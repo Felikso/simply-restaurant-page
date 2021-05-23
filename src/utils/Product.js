@@ -1,14 +1,18 @@
 import React from "react"
 
 import styled from "styled-components"
-import { styles } from "./index"
+/* import { styles } from "./index"
 
-import Img from "gatsby-image"
+import Img from "gatsby-image" */
 import {  GatsbyImage } from 'gatsby-plugin-image'
 
 // destructring the product off of props, so we don't have to keep writing props.product
 export default function Product({ product, img, key }) {
-  const { name, price, desc } = product
+  const { name, price, desc/* , image */ } = product
+/*   console.log(img)
+  const imageData = getImage(img)
+
+  console.log(imageData) */
 /*   const img = img
   const key = key */
 /*   const { fixed } = product.image */
@@ -20,6 +24,7 @@ export default function Product({ product, img, key }) {
                       image={img}
                       alt={`lwowskie-smaki-menu-${name}`}
                    />}
+                  {/*  <img src={image}/> */}
       <div className="text">
         <div className="product-content">
           <h3 className="name">{name}</h3>
@@ -48,7 +53,7 @@ const ProductWrapper = styled.div`
   }
   .name,
   .price {
-    color: ${styles.colors.mainYellow};
+    color: ${({ theme }) => theme.colors.fourthColor};
     margin-top: 0.5rem;
   }
   .info {

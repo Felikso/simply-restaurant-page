@@ -37,7 +37,7 @@ import MenuItemsContainer from "./MenuItemsContainer"
 
 
 
-const GET_MENU = graphql`
+/* const GET_MENU = graphql`
   {
     menuItems: allWpDish {
       nodes {
@@ -58,6 +58,25 @@ const GET_MENU = graphql`
           price
           quantity
         }
+      }
+    }
+  }
+` */
+
+const GET_MENU = graphql`
+  {
+    menuItems: allDataMenuJson {
+      nodes {
+          quantity
+          price
+          name
+          desc
+          category
+          image {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
       }
     }
   }

@@ -1,15 +1,17 @@
 import React from 'react'
 import styled from 'styled-components'
 
+import { DefaultSection } from '../components/style/mainStyles'
+
 export default function AboutUsSection({id}) {
     return (
         <section id={id}>
             <AboutUsHeader>
                 <h2>O nas</h2>
             </AboutUsHeader>
-            <AboutUsBox>
+            <DefaultSection>
                 
-            </AboutUsBox>
+            </DefaultSection>
             
         </section>
     )

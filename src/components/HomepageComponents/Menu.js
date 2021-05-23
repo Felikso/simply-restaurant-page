@@ -31,7 +31,7 @@ import styled from "styled-components"
   }
 ` */
 
-const PRODUCTSWP = graphql`
+/* const PRODUCTSWP = graphql`
   {
     items: allWpDish {
       nodes {
@@ -55,8 +55,28 @@ const PRODUCTSWP = graphql`
       }
     }
   }
-`
+` */
 
+
+const PRODUCTSWP = graphql`
+{
+ items: allDataMenuJson {
+    nodes {
+
+        quantity
+        price
+        name
+        desc
+        category
+        image {
+          childImageSharp {
+            gatsbyImageData
+          }
+        }
+    }
+  }
+}
+`
 
 
 export default function Menu() {
@@ -112,8 +132,10 @@ export default function Menu() {
               return (
                 <Product 
                   key={item.id} 
-                  img={item.featuredImage.node.localFile.childImageSharp.gatsbyImageData} 
-                  product={item.dishes} 
+                  /* img={item.featuredImage.node.localFile.childImageSharp.gatsbyImageData}  */
+                  img={item.image.childImageSharp.gatsbyImageData}
+/*                   product={item.dishes}  */
+                      product={item} 
                 />
               )
             })

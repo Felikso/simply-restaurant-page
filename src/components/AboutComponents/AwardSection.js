@@ -3,7 +3,7 @@ import React from "react"
 import styled from "styled-components"
 import { styles } from "../../utils"
 
-import { FaAward } from "react-icons/fa"
+import { FaAward } from "@react-icons/all-files/fa/FaAward";
 
 export default function AwardSection() {
   return (

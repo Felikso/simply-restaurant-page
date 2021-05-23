@@ -1,10 +1,36 @@
 export const theme = {
+
+  siteData: {
+    title: "Lwowskie Smaki",
+    city: "Wrocław",
+  },
   colors: {
     primaryColor: "#fff",
     secondaryColor: "#237500",
     thirdColor: "#000000",
+    fourthColor: "#db0f0f",
 
-    backgroundColor: "#ABABAB",
+    footerBg: "#AAA",
+    footerLine: "#db0f0f",
+    footerIcon: "#db0f0f",
+    footerIconHover: "black",
+    footerLink: "black",
+    footerLinkHover: "#db0f0f",
+    footerInfo: "#db0f0f",
+    footerInfoHover: "black",
+
+    mainNavBg: "transparent",
+    mainNavFont: "white",
+    mainNavFontHover: "#db0f0f",
+
+
+
+
+    mainWhite: "#f2f2f2",
+    mainGrey: "silver",
+    mainOrange: "#db0f0f;",
+
+    backgroundColor: "#E3E3E3",
 
 
     white: "#fff",
@@ -25,7 +51,12 @@ export const theme = {
     transDefault: "all 0.5s ease-in-out",
   },
 
+  textStyle: {
+    textFamily: "'Ubuntu', sans-serif",
 
+
+    letterSpacing: "0.1rem",
+  },
 
 
   btn: {
@@ -40,6 +71,14 @@ export const theme = {
     fontThird: "blue",
   },
 
+  fontSize: {
+    footerIcon: "36px",
+    footerLink: "14px",
+    footerInfo: "10px",
+    footerLogoBrandName: "36px",
+    footerLogoIcon: "76px",
+  },
+
   fontWeight: {
     lxx: 900,
     lx: 800,
@@ -52,4 +91,14 @@ export const theme = {
     l: "992px",
     xl: "1200px",
   },
+
+  nav: {
+    defaultBg: "white",
+    scrollBg: "rgba(255,255,255,0.5)",
+    burgerClose: "black",
+    burgerOpen: "yellow",
+  }
 };
+
+
+export const fontSlanted = `font-family:'Caveat', cursive;`

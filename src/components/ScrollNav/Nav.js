@@ -45,7 +45,7 @@ const NavBox = styled.nav`
     &.alt{
         position: fixed;
         width: 100vw;
-        background: red;
+        background: ${({ theme }) => theme.nav.scrollBg};
         top: 0;
         z-index: 100;
     }
@@ -54,7 +54,7 @@ const NavBox = styled.nav`
 
     width: 100%;
     height: 10vh;
-    background: ${({ theme }) => theme.colors.primaryColor};
+    background: ${({ theme }) => theme.nav.defaultBg};
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -110,7 +110,7 @@ const NavBox = styled.nav`
         position: fixed;
         top: 0;
         padding: 0.5em 1em;
-        background-color: transparentize(red, 0.05);
+/*         background-color: transparentize(red, 0.05); */
         border-top-left-radius: 0;
         border-top-right-radius: 0;
         z-index: 100;

@@ -1,74 +1,186 @@
 import { Link } from 'gatsby'
 import React from 'react'
+import styled from 'styled-components'
+import { ReactComponent as Logo } from './x.svg'
+import { ImFacebook2 } from "@react-icons/all-files/im/ImFacebook2";
+import { SiGooglemybusiness } from "@react-icons/all-files/si/SiGooglemybusiness";
+import { FaInstagramSquare } from "@react-icons/all-files/fa/FaInstagramSquare";
 
-const Footer = props => (
-  <footer id="footer">
-    <section>
-      <h2>Aliquam sed mauris</h2>
-      <p>
-        Sed lorem ipsum dolor sit amet et nullam consequat feugiat consequat
-        magna adipiscing tempus etiam dolore veroeros. eget dapibus mauris. Cras
-        aliquet, nisl ut viverra sollicitudin, ligula erat egestas velit, vitae
-        tincidunt odio.
-      </p>
-      <ul className="actions">
-        <li>
-          <Link to="/generic" className="button">
-            Learn More
-          </Link>
-        </li>
-      </ul>
-    </section>
-    <section>
-      <h2>Etiam feugiat</h2>
-      <dl className="alt">
-        <dt>Address</dt>
-        <dd>1234 Somewhere Road &bull; Nashville, TN 00000 &bull; USA</dd>
-        <dt>Phone</dt>
-        <dd>(000) 000-0000 x 0000</dd>
-        <dt>Email</dt>
-        <dd>
-          <a href="https://codebushi.com">information@untitled.tld</a>
-        </dd>
-      </dl>
-      <ul className="icons">
-        <li>
-          <a
-            href="https://twitter.com/huntaroSan"
-            className="icon fa-twitter alt"
-          >
-            <span className="label">Twitter</span>
-          </a>
-        </li>
-        <li>
-          <a href="https://codebushi.com" className="icon fa-facebook alt">
-            <span className="label">Facebook</span>
-          </a>
-        </li>
-        <li>
-          <a href="https://codebushi.com" className="icon fa-instagram alt">
-            <span className="label">Instagram</span>
-          </a>
-        </li>
-        <li>
-          <a
-            href="https://github.com/codebushi/gatsby-starter-stellar"
-            className="icon fa-github alt"
-          >
-            <span className="label">GitHub</span>
-          </a>
-        </li>
-        <li>
-          <a href="https://codebushi.com" className="icon fa-dribbble alt">
-            <span className="label">Dribbble</span>
-          </a>
-        </li>
-      </ul>
-    </section>
-    <p className="copyright">
-      &copy; Untitled. Design: <a href="https://html5up.net">HTML5 UP</a>.
-    </p>
-  </footer>
+const Footer = ({siteData}) => {
+
+  const footerIcons = [
+    {icon: (<ImFacebook2 />), title: "facebook", link: "#"},
+    {icon: (<FaInstagramSquare />), title: "instagram", link: "#"},
+    {icon: (<SiGooglemybusiness />), title: "google moja firma", link: "#"}
+]
+
+
+  const footerData = [
+    {title: "O nas", link: "/o-nas"},
+    {title: "Menu", link: "/menu"},
+    {title: "Kontakt", link: "/kontakt"},
+    {title: "Galeria", link: "/galeria"},
+]
+
+const footerInfo = [
+  {title: "Coockies", link: "/cookiec"},
+  {title: "Polityka prywatności", link: "/polityka-prywatnosci"},
+  {title: "Coppyright © 2021", link: "/#"},
+]
+
+
+return(
+  <>
+  <FooterUnderLine></FooterUnderLine>
+  <FooterContainer>
+
+          <FooterBox>
+                    <FooterLogoBox>
+
+                        <FooterBrandName>
+                          {siteData.title}
+                        </FooterBrandName>
+                        
+                        <FooterLogo>
+                          <Logo />
+                        </FooterLogo>
+                  
+                    </FooterLogoBox>
+        </FooterBox>
+
+        <FooterBox>
+                    <FooterIconsBox>
+
+                    {footerIcons.map((item, index)=> (
+                      <FooterIcon key={index} href={item.link} title={item.title}>
+                        {item.icon}
+                      </FooterIcon>
+                      ))}
+
+                    </FooterIconsBox>
+
+                    <FooterLinksBox>
+
+                    {footerData.map((item, index)=> (
+                        <FooterLink 
+                          to={item.link} 
+                          key={index} >
+                            {item.title}
+                        </FooterLink>
+                      ))}
+                    </FooterLinksBox>
+
+                    <FooterInfoBox>
+              
+                        {footerInfo.map((item, index)=> (
+                        <FooterInfo 
+                          to={item.link} 
+                          key={index} >
+                            {item.title}
+                        </FooterInfo>
+                      ))}
+              
+                    </FooterInfoBox>
+          </FooterBox>
+
+  </FooterContainer>
+  </>
 )
+}
 
 export default Footer
+
+const FooterLogo = styled.div`
+  font-size: ${({ theme }) => theme.fontSize.footerLogoIcon};
+`
+
+const FooterBox = styled.section`
+  text-align: center;
+  display: grid;
+  grid-gap: .6em;
+
+  @media (max-width: ${({ theme }) => theme.device.m}) {
+    padding: .5em 0;
+  }
+`
+
+const FooterUnderLine = styled.div`
+      width: 100%;
+      height: 0.2rem;
+      background: ${({ theme }) => theme.colors.footerLine}; 
+`
+
+const FooterContainer = styled.footer`
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 1em 0;
+    background: ${({ theme }) => theme.colors.footerBg}; 
+    /* direction: rtl; //changes columns directions */
+
+    @media (max-width: ${({ theme }) => theme.device.m}) {
+      grid-template-columns: 1fr;
+    }
+`
+
+const FooterIconsBox = styled.div`
+  display: flex;
+  justify-content: center;
+`
+
+const FooterIcon = styled.a`
+      color: ${({ theme }) => theme.colors.footerIcon}; 
+      font-size: ${({ theme }) => theme.fontSize.footerIcon}; 
+      transition: ${({ theme }) => theme.transitions.transDefault}; 
+      margin: 10px;
+
+      &:hover{
+        /* color: ${({ theme }) => theme.colors.footerIconHover};  */
+          filter: brightness(0.6);
+      }
+`
+
+const FooterLinksBox = styled.div`
+  display: flex;
+  justify-content: center;
+  font-size: ${({ theme }) => theme.fontSize.footerLink}; 
+`
+
+const FooterLink = styled(Link)`
+  color: ${({ theme }) => theme.colors.footerLink}; 
+  text-decoration: none;
+  margin: 0 10px;
+  transition: ${({ theme }) => theme.transitions.transDefault}; 
+  &:hover{
+    color: ${({ theme }) => theme.colors.footerLinkHover}; 
+    /* filter: brightness(6.6); */
+  }
+`
+
+const FooterInfoBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  font-size: ${({ theme }) => theme.fontSize.footerInfo}; 
+`
+
+const FooterInfo = styled(Link)`
+    color: ${({ theme }) => theme.colors.footerInfo}; 
+    text-decoration: none;
+    margin: .3em;
+    transition: ${({ theme }) => theme.transitions.transDefault}; 
+    &:hover{
+      color: ${({ theme }) => theme.colors.footerInfoHover};
+      filter: brightness(0.6);
+    }
+`
+
+const FooterLogoBox = styled.div`
+    font-size:  ${({ theme }) => theme.fontSize.footerLogoBrandName};
+
+`
+const FooterBrandName = styled.div`
+    margin-bottom: .7em;
+`

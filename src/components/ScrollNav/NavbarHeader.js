@@ -2,7 +2,6 @@ import React, { Component } from "react"
 
 import { Link } from "gatsby"
 import logo from "../../images/logo.svg"
-import { FaAlignRight } from "react-icons/fa"
 
 import styled from "styled-components"
 
@@ -16,7 +15,7 @@ export default class NavbarHeader extends Component {
     return (
       <HeaderWrapper>
         <Link to="/">
-          <img src={logo} alt="Eatery Logo" />
+{/*           <img src={logo} alt="Eatery Logo" /> */}<p>X</p>
         </Link>
         <Burger handleNavbar={handleNavbar} navbarOpen={navbarOpen} />
       </HeaderWrapper>

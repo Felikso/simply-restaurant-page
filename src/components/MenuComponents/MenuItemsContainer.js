@@ -18,7 +18,7 @@ function onlyUnique(value, index, self) {
 
 const getCategories = items => {
   let tempItems = items.map(items => {
-    return items.dishes.category
+    return /* items.dishes.category */ items.category
   })
 
   
@@ -69,9 +69,18 @@ export default class MenuItemsContainer extends Component {
         displayedItems: tempItems,
         currentCategory: cat,
       })
-    } else {
+    } /* else {
       let items = tempItems.filter(({ dishes }) => {
         return dishes.category.indexOf(cat) >= 0 
+      })
+      this.setState({
+        displayedItems: items,
+        currentCategory: cat,
+      })
+    } */
+    else {
+      let items = tempItems.filter(({ category }) => {
+        return category.indexOf(cat) >= 0 
       })
       this.setState({
         displayedItems: items,
@@ -110,8 +119,10 @@ export default class MenuItemsContainer extends Component {
             return (
               <Product
               key={item.id} 
-              img={item.featuredImage.node.localFile.childImageSharp.gatsbyImageData} 
-              product={item.dishes}
+              /* img={item.featuredImage.node.localFile.childImageSharp.gatsbyImageData}  */
+/*               product={item.dishes} */
+              img={item.image.childImageSharp.gatsbyImageData} 
+              product={item}
               />
             )
           })}

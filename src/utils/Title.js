@@ -21,10 +21,11 @@ const TitleWrapper = styled.div`
   text-align: center;
 
   .subtitle {
-    ${styles.textSlanted};
-    ${styles.letterSpacing({ spacing: "0.3rem" })};
+    font-family: ${({ theme }) => theme.textStyle.textFamily};
+    font-style: italic;
+    letter-spacing: ${({ theme }) => theme.textStyle.letterSpacing};
     font-size: 2rem;
-    color: ${styles.colors.mainYellow};
+    color: ${({ theme }) => theme.colors.fourthColor};
   }
 
   .title {
@@ -36,7 +37,7 @@ const TitleWrapper = styled.div`
   .underline {
     width: 5rem;
     height: 0.2rem;
-    background: ${styles.colors.mainYellow};
+    background: ${({ theme }) => theme.colors.mainOrange}; 
     margin: 0.5rem auto;
   }
 `

@@ -40,6 +40,6 @@ export const border = ({
   return `border:${width} ${type} ${color}`
 }
 
-export const letterSpacing = ({ spacing = "0.1rem" }) => {
+export const letterSpacing = ({ spacing = "0.7rem" }) => {
   return `letter-spacing:${spacing}`
 }

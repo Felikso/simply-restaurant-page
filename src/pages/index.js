@@ -1,18 +1,32 @@
 import { Link } from 'gatsby'
 import React from "react"
 
+import { useStaticQuery, graphql, StaticQuery } from 'gatsby'
+
+import { useHasBeenVisible } from '../hooks/useVisibility';
+import { useHasBeenPartlyVisible } from '../hooks/useVisibility';
+
+import { getImage } from 'gatsby-plugin-image';
+import { convertToBgImage } from 'gbimage-bridge';
+
 import styled from "styled-components"
 
 import Layout from '../components/Layout/layout'
 import SEO from "../components/seo"
+
 import { HomeHeader, HomeBanner, BannerButton } from "../utils"
 
-import image from "../images/bcg/homeBcg.jpeg"
+/* import StyledHero from "../utils/StyledHero"
 
+import bgImage from "../images/bcg/homeBg.jpg"
+import image from "../images/bcg/homeBg.jpg" */
 
 import QuickInfo from "../components/HomepageComponents/QuickInfo"
-import Gallery from "../components/HomepageComponents/Gallery"
+/* import Gallery from "../components/HomepageComponents/Gallery" */
 import Menu from "../components/HomepageComponents/Menu"
+import FullWidthSection from '../components/FullWidthSection';
+
+import Footer from "../components/Footer/Footer"
 
 
 import Helmet from 'react-helmet'
@@ -27,6 +41,46 @@ import AboutUsSection from '../sections/AboutUsSection'
 import ContactUsSection from '../sections/ContactUsSection'
 import OurOfferSection from '../sections/OurOfferSection'
 
+
+
+
+
+const BG_IMAGE = graphql`
+  {
+    placeholderImage: file(relativePath: { eq: "bcg/homeBg.jpg" }) {
+      childImageSharp {
+        gatsbyImageData(
+            width: 1200, 
+            quality: 60, 
+            webpOptions: {quality: 75})
+        }
+      }
+
+
+}
+`
+
+/* const { placeholderImage, placeholderVideo, placeholderVideoSmall } = useStaticQuery(
+  graphql`
+    query {
+        placeholderImage: file(relativePath: {eq: "homeBg.jpg"}) {
+          childImageSharp {
+          gatsbyImageData(
+              width: 1200, 
+              quality: 60, 
+              webpOptions: {quality: 75})
+          }
+}
+
+
+}
+`
+);
+const imgg = getImage(placeholderImage);
+
+
+const bgImagee = convertToBgImage(imgg); */
+
 class Index extends React.Component {
   constructor(props) {
     super(props)
@@ -34,6 +88,8 @@ class Index extends React.Component {
       stickyNav: false,
     }
   }
+
+  
 
   _handleWaypointEnter = () => {
     this.setState(() => ({ stickyNav: false }))
@@ -43,32 +99,60 @@ class Index extends React.Component {
     this.setState(() => ({ stickyNav: true }))
   }
 
-  render() {
+  
+  render() 
+  {
+    const halfPage = useRef();
+    const hasScrolled = useHasBeenPartlyVisible(halfPage, 0.3);
     return (
       <Layout>
         <Helmet title="Gatsby Starter - Stellar" />
 
-        <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
-    <HomeHeader image={image}>
-      <HomeBanner
-        title="eatery"
-        subtitle1={{ address: "1234 9th Ave, SF", phone: "(415) 123-4567" }}
-        subtitle2={{ address: "5678 18th St, SF", phone: "(415) 555-9247" }}
-      >
-        <BannerButtonWrapper>
-          <Link to="/menu" style={{ textDecoration: "none" }}>
-            <BannerButton style={{ margin: "1.7rem 0.8rem" }}>
-              menu
-            </BannerButton>
-          </Link>
-          <Link to="/contact" style={{ textDecoration: "none" }}>
-            <BannerButton style={{ margin: "1.7rem 0.8rem" }}>
-              contact
-            </BannerButton>
-          </Link>
-        </BannerButtonWrapper>
-      </HomeBanner>
-    </HomeHeader>
+        <SEO title="Lwowskie Smaki" keywords={[`gatsby`, `application`, `react`]} />
+
+      <StaticQuery 
+          query={BG_IMAGE}>
+        {({ placeholderImage }) => {
+            const img = getImage(placeholderImage);
+            const backgroundFluidImageStack = [
+              `linear-gradient(rgba(220, 15, 15, 0.73), rgba(4, 243, 67, 0.73))`,
+              img,
+            ].reverse();
+            const bgImage = convertToBgImage(backgroundFluidImageStack);
+
+          return(
+            <HomeHeader
+                    bgImage={bgImage}
+                    headerBg="rgba(0,0,0,0.5)"
+                    afterOpacity="0.3 !important"
+                    HeroHeight="90vh"
+                    HeroWidthMedia="65vh"
+                    HeroHeightMedia="90vh"
+                    >
+                  <HomeBanner
+                    title="lwowskie smaki"
+                    subtitle1={{ address: "ul. Dawida Wrocław", phone: "+48 000-000-000" }}
+                    motto={{excerption1: "szybko, smacznie, świeżo", excerption2: "serdecznie zapraszamy"}}
+                  >
+                    <BannerButtonWrapper>
+                      <Link to="/menu" style={{ textDecoration: "none" }}>
+                        <BannerButton style={{ margin: "1.7rem 0.8rem" }}>
+                          menu
+                        </BannerButton>
+                      </Link>
+                      <Link to="/contact" style={{ textDecoration: "none" }}>
+                        <BannerButton style={{ margin: "1.7rem 0.8rem" }}>
+                          contact
+                        </BannerButton>
+                      </Link>
+                    </BannerButtonWrapper>
+                  </HomeBanner>
+                </HomeHeader>
+            
+          )
+
+        }}
+      </StaticQuery>
 
         <Waypoint
           onEnter={this._handleWaypointEnter}
@@ -76,11 +160,19 @@ class Index extends React.Component {
         ></Waypoint>
         <Nav sticky={this.state.stickyNav} />
 
-        <QuickInfo />
+        <QuickInfo ref={halfPage}/>
+
+        {hasScrolled ? (
+        <>
         <AboutUsSection id="about-us-section" />
         <ContactUsSection id="contact-us-section" />
         <OurOfferSection id="our-offer-section" />
         <Menu />
+        </>
+      ) : (
+        <FullWidthSection height='2286px' minHeight='3448px' />
+      )}
+
       </Layout>
     )
   }
