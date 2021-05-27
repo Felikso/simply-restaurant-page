@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { graphql, useStaticQuery } from 'gatsby'
+
 import {  GatsbyImage } from 'gatsby-plugin-image'
 import styled from 'styled-components'
 
@@ -10,7 +10,7 @@ import 'aos/dist/aos.css'; */
 import Gallery from '@browniebroke/gatsby-image-gallery'
 
 
-export default function OfferGalleryLightBox({heading}) {
+export default function OfferGalleryLightBox({heading, images}) {
 
 /*     useEffect(() => {
         Aos.init({
@@ -62,35 +62,7 @@ const images = data.allWpGallery.nodes.map(({ featuredImage }) => ({
 })) */
 
 
-const photos = useStaticQuery(
-  graphql`
-    query {
-      productsGallery: 
-      allFile(filter: {relativeDirectory: {eq: "productsGallery"}}) {
-          edges {
-             node {
-              name
-                childImageSharp {
-                  thumb: gatsbyImageData(
-                    width: 270
-                    height: 270
-                    placeholder: BLURRED
-                  )
-                  full: gatsbyImageData(layout: FULL_WIDTH)
-                }
-              }
-            }
-          }
-}
-`
-)
 
-
-const images = photos.productsGallery.edges.map(({ node }) => ({
-...node.childImageSharp,
-caption: `Lwowskie Smaki - ${node.name}`,
-
-}) )
 
 const lightboxOptions = {
   imageLoadErrorMessage: 'Przepraszamy, wystąpił problem ze zdjęciem',

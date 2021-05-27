@@ -85,6 +85,8 @@ function Index (props) {
   const halfPage = useRef();
   const hasScrolled = useHasBeenPartlyVisible(halfPage, 0.1);
   const [stickyNav, setStickyNav] = useState(false)
+  console.log(BG_IMAGE)
+  console.log('BG_IMAGE')
 /*   constructor(props) {
     super(props)
     this.state = {
