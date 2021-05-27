@@ -1,9 +1,9 @@
 import { Link } from 'gatsby'
-import React from "react"
+import React, {useState, useRef} from "react"
 
 import { useStaticQuery, graphql, StaticQuery } from 'gatsby'
 
-import { useHasBeenVisible } from '../hooks/useVisibility';
+/* import { useHasBeenVisible } from '../hooks/useVisibility'; */
 import { useHasBeenPartlyVisible } from '../hooks/useVisibility';
 
 import { getImage } from 'gatsby-plugin-image';
@@ -81,29 +81,37 @@ const imgg = getImage(placeholderImage);
 
 const bgImagee = convertToBgImage(imgg); */
 
-class Index extends React.Component {
-  constructor(props) {
+function Index (props) {
+  const halfPage = useRef();
+  const hasScrolled = useHasBeenPartlyVisible(halfPage, 0.1);
+  const [stickyNav, setStickyNav] = useState(false)
+/*   constructor(props) {
     super(props)
     this.state = {
       stickyNav: false,
     }
+  } */
+
+  const handleWaypointEnter = () => {
+    setStickyNav(false)
   }
 
-  
-
-  _handleWaypointEnter = () => {
+/*   _handleWaypointEnter = () => {
     this.setState(() => ({ stickyNav: false }))
   }
+ */
 
-  _handleWaypointLeave = () => {
-    this.setState(() => ({ stickyNav: true }))
+  const handleWaypointLeave = () => {
+    setStickyNav(true)
   }
 
+/*   _handleWaypointLeave = () => {
+    this.setState(() => ({ stickyNav: true }))
+  }
+ */
   
-  render() 
-  {
-    const halfPage = useRef();
-    const hasScrolled = useHasBeenPartlyVisible(halfPage, 0.3);
+  
+
     return (
       <Layout>
         <Helmet title="Gatsby Starter - Stellar" />
@@ -155,14 +163,18 @@ class Index extends React.Component {
       </StaticQuery>
 
         <Waypoint
-          onEnter={this._handleWaypointEnter}
-          onLeave={this._handleWaypointLeave}
+          onEnter={handleWaypointEnter}
+          onLeave={handleWaypointLeave}
         ></Waypoint>
-        <Nav sticky={this.state.stickyNav} />
+        <Nav sticky={stickyNav} /* ref={halfPage} */ />
 
-        <QuickInfo ref={halfPage}/>
+        <QuickInfo />
+        <AboutUsSection id="about-us-section" />
+        <ContactUsSection id="contact-us-section" />
+        <OurOfferSection id="our-offer-section" />
+        <Menu />
 
-        {hasScrolled ? (
+{/*         {hasScrolled ? (
         <>
         <AboutUsSection id="about-us-section" />
         <ContactUsSection id="contact-us-section" />
@@ -171,11 +183,11 @@ class Index extends React.Component {
         </>
       ) : (
         <FullWidthSection height='2286px' minHeight='3448px' />
-      )}
+      )} */}
 
       </Layout>
     )
-  }
+
 }
 
 export default Index

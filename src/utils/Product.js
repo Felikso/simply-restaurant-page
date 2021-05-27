@@ -23,6 +23,7 @@ export default function Product({ product, img, key }) {
                       key={key}
                       image={img}
                       alt={`lwowskie-smaki-menu-${name}`}
+                      load="lazy"
                    />}
                   {/*  <img src={image}/> */}
       <div className="text">

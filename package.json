@@ -5,6 +5,7 @@
   "version": "0.1.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
+    "@browniebroke/gatsby-image-gallery": "^6.2.1",
     "@el7cosmos/gatsby-plugin-prefetch-google-fonts": "^2.0.3",
     "@react-icons/all-files": "^4.1.0",
     "@svgr/webpack": "^5.5.0",
@@ -14,6 +15,8 @@
     "gatsby-image": "^2.11.0",
     "gatsby-plugin-image": "^1.5.0",
     "gatsby-plugin-manifest": "^3.5.0",
+    "gatsby-plugin-minify": "^0.4.0",
+    "gatsby-plugin-no-javascript": "^2.0.5",
     "gatsby-plugin-offline": "^2.2.10",
     "gatsby-plugin-preact": "^5.5.0",
     "gatsby-plugin-preload-fonts": "^2.5.0",
@@ -48,7 +51,7 @@
   ],
   "license": "MIT",
   "scripts": {
-    "build": "gatsby build",
+    "build": "gatsby clean && gatsby build",
     "develop": "gatsby develop",
     "format": "prettier --write src/**/*.{js,jsx}",
     "start": "npm run develop",
