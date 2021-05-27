@@ -4,20 +4,20 @@ import {  GatsbyImage } from 'gatsby-plugin-image'
 import styled from 'styled-components'
 
 //transitions
-import Aos from 'aos';
-import 'aos/dist/aos.css';
+/* import Aos from 'aos';
+import 'aos/dist/aos.css'; */
 
 import Gallery from '@browniebroke/gatsby-image-gallery'
 
 
 export default function OfferGalleryLightBox({heading}) {
 
-    useEffect(() => {
+/*     useEffect(() => {
         Aos.init({
             duration: 1000
         });
-    }, [])
-    const data = useStaticQuery(
+    }, []) */
+ /*    const data = useStaticQuery(
         graphql`
           query {
             offerPhotos:  
@@ -49,10 +49,7 @@ export default function OfferGalleryLightBox({heading}) {
       }
     }
   }
-
-  }
-
-          
+  }  
         `
       )
 
@@ -62,8 +59,38 @@ const wpPhotos = data.allWpGallery.nodes
 const images = data.allWpGallery.nodes.map(({ featuredImage }) => ({
         ...featuredImage.node.localFile.childImageSharp,
         caption: featuredImage.node.title,
-}))
+})) */
 
+
+const photos = useStaticQuery(
+  graphql`
+    query {
+      productsGallery: 
+      allFile(filter: {relativeDirectory: {eq: "productsGallery"}}) {
+          edges {
+             node {
+              name
+                childImageSharp {
+                  thumb: gatsbyImageData(
+                    width: 270
+                    height: 270
+                    placeholder: BLURRED
+                  )
+                  full: gatsbyImageData(layout: FULL_WIDTH)
+                }
+              }
+            }
+          }
+}
+`
+)
+
+
+const images = photos.productsGallery.edges.map(({ node }) => ({
+...node.childImageSharp,
+caption: `Lwowskie Smaki - ${node.name}`,
+
+}) )
 
 const lightboxOptions = {
   imageLoadErrorMessage: 'Przepraszamy, wystąpił problem ze zdjęciem',
@@ -89,9 +116,9 @@ const CustomWrapper = ({ children, onClick }) => (
     return (
       <>
             <GalleryContainer
-              data-aos="fade-in"   
+/*               data-aos="fade-in"   
               data-aos-offset="100"
-              data-aos-delay="100">
+              data-aos-delay="100" */>
             <Gallery  
             images={images}
             lightboxOptions={lightboxOptions}
