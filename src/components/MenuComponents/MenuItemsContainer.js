@@ -111,6 +111,19 @@ export default class MenuItemsContainer extends Component {
             )
           })}
         </CategoryButtonWrapper>
+
+        <CategoryButtonWrapper>
+          <select onChange={(e) => this.handleItems(e.target.value)}>
+          {this.state.categories.map((cat, index) => {
+            return (
+                  <option key={index} value={cat} onChange={() => this.handleItems(cat)}>
+                  {cat}
+                  </option>
+            )
+          })}
+          </select>
+        </CategoryButtonWrapper>
+
         <Title title={`${this.state.currentCategory} Items`} />
         <ProductList>
           {displayedItems.map(item => {
@@ -119,8 +132,6 @@ export default class MenuItemsContainer extends Component {
             return (
               <Product
               key={item.id} 
-              /* img={item.featuredImage.node.localFile.childImageSharp.gatsbyImageData}  */
-/*               product={item.dishes} */
               img={item.image.childImageSharp.gatsbyImageData} 
               product={item}
               />
