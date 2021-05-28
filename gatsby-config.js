@@ -71,6 +71,13 @@ module.exports = {
       },
     },
     `gatsby-plugin-preload-fonts`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `sliderBackgrounds`,
+        path: `${__dirname}/src/images/homeSlider`, // wherever background images are stored
+      },
+    },
 /*     {
       resolve: `gatsby-source-filesystem`,
       options: {
