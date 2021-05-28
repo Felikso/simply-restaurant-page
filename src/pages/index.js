@@ -40,6 +40,7 @@ import Navbar from '../components/globals/navbar/Navbar'
 import AboutUsSection from '../sections/AboutUsSection'
 import ContactUsSection from '../sections/ContactUsSection'
 import OurOfferSection from '../sections/OurOfferSection'
+import HomeSlider from '../components/HomeSlider/HomeSlider';
 
 
 
@@ -169,6 +170,7 @@ function Index (props) {
           onLeave={handleWaypointLeave}
         ></Waypoint>
         <Nav sticky={stickyNav} /* ref={halfPage} */ />
+        <HomeSlider />
 
         <QuickInfo />
         <AboutUsSection id="about-us-section" />

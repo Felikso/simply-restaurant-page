@@ -29,6 +29,9 @@ query {
 `
 );
 const backgroundImage = getImage(img);
+console.log(img)
+console.log('img')
+
   return(
   <Layout>
     <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
