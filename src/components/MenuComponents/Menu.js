@@ -71,6 +71,7 @@ const GET_MENU = graphql`
           price
           name
           desc
+          slug
           category
           image {
             childImageSharp {
@@ -112,8 +113,6 @@ export default class Menu extends Component {
           query={GET_MENU}
           render={data => {
             const menuItems = data.menuItems.nodes
-            console.log(menuItems)
-            console.log('menuItems')
             return <MenuItemsContainer menuItems={menuItems} />
           }}
         />

@@ -1,4 +1,5 @@
 import React from "react"
+import { Link } from 'gatsby'
 
 import styled from "styled-components"
 /* import { styles } from "./index"
@@ -8,7 +9,7 @@ import {  GatsbyImage } from 'gatsby-plugin-image'
 
 // destructring the product off of props, so we don't have to keep writing props.product
 export default function Product({ product, img, key }) {
-  const { name, price, desc/* , image */ } = product
+  const { name, price, desc, slug } = product
 /*   console.log(img)
   const imageData = getImage(img)
 
@@ -18,7 +19,8 @@ export default function Product({ product, img, key }) {
 /*   const { fixed } = product.image */
   return (
     <ProductWrapper>
-{/*       <Img fixed={fixed} className="img" /> */}
+<Link to=""></Link>
+<Link to={`/menu/${product.slug}`}>{product.name}</Link>
 {                <ProductImg
                       key={key}
                       image={img}

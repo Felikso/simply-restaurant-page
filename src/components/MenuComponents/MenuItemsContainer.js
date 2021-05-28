@@ -18,7 +18,7 @@ function onlyUnique(value, index, self) {
 
 const getCategories = items => {
   let tempItems = items.map(items => {
-    return /* items.dishes.category */ items.category
+    return items.category
   })
 
   
@@ -87,11 +87,6 @@ export default class MenuItemsContainer extends Component {
         currentCategory: cat,
       })
     }
-
-   /*  console.log(items) */
-    console.log('items')
-    console.log(tempItems)
-    console.log('tempItems')
   }
 
   render() {
