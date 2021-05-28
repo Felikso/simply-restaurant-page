@@ -1,0 +1,6 @@
+[[plugins]] 
+  package = "netlify-plugin-gatsby-cache"
+[[plugins]] 
+  package = " @ netlify / plugin-lighthouse " 
+  [plugins.inputs] 
+    audit_url = 'https://vibrant-gates-1f7acf.netlify.app'

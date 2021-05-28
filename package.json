@@ -31,6 +31,7 @@
     "gatsby-transformer-json": "^3.5.0",
     "gatsby-transformer-sharp": "^3.5.0",
     "gbimage-bridge": "^0.1.4",
+    "netlify-plugin-gatsby-cache": "^0.3.2",
     "postcss": "^8.3.0",
     "preact": "^10.5.13",
     "preact-render-to-string": "^5.1.19",
@@ -51,7 +52,7 @@
   ],
   "license": "MIT",
   "scripts": {
-    "build": "gatsby clean && gatsby build",
+    "build": "GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES = true gatsby build --log-pages",
     "develop": "gatsby develop",
     "format": "prettier --write src/**/*.{js,jsx}",
     "start": "npm run develop",
